@@ -1,13 +1,13 @@
-﻿var dataFactory = function ($http, $q, $filtter) {
+﻿var dataFactory = function ($http, $q, $filter) {
     var defer = $q.defer();
     return {
         Account: {
             GetBal: function (accountNo) {
                 $http({
                     method: 'GET',
-                    url: '',
+                    url: 'http://localhost:54955/Account/GetBalance',
 
-                    data: { accountNo: accountNo }
+                    params: { accountNo: accountNo }
                 }).then(function (data) {
                     defer.resolve(data);
                 });
@@ -22,16 +22,18 @@
             Find: function (id) {
                 resolve($filtter('filter')(fakeDataHub.account, {id,id},true)[0])
             },
-            Transfer: function (accountNo,amount) {
+            Transfer: function (accountNo,accountReceive,amount) {
                 $http({
                     method: 'POST',
-                    url: '',
-                    data: { accountNo: accountNo, amount: amount}
+                    url: 'http://localhost:54955/Account/Transfer',
+                    params: { accountNo: accountNo, accountReceive: accountReceive, amount: amount}
                 }).then(function (data) {
                     defer.resolve(data);
                 });
                 return defer.promise;
             }
+
+
         }
        
     }

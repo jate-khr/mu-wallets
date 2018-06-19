@@ -5,6 +5,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.8/angular.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.18/angular-ui-router.min.js"></script>
+
+    <script src="src/factory/data.factory.js"></script> 
+    <script src="src/controller/displayTransfer.controller.js"></script>
     <script type="text/javascript" src="src/controller/balance.controller.js"></script>
     <script type="text/javascript" src="src/controller/transfer.controller.js"></script>
     <style>
@@ -32,11 +35,11 @@
         <br />
         <div class="text-left">
 
-            <div class="menu-item row">
+            <div class="menu-item row" ng-click="StateRoute('balance')">
                 <div class="col-10">เช็คยอดเงิน</div>
                 <div class="col-1"><i class="fa fa-chevron-right"></i></div>
             </div>
-            <div class="menu-item row">
+            <div class="menu-item row" ng-click="StateRoute('transfer')">
                 <div class="col-10">โอนเงิน</div>
                 <div class="col-1" style="height: 50px; line-height: 50px;"><i class="fa fa-chevron-right"></i></div>
             </div>
@@ -52,9 +55,19 @@
     angular.module('muWallet', [
         'ui.router'
     ])
+        .run(['$rootScope', '$state', function ($rootScope, $state) {
+            $rootScope.StateRoute = function (url, params) {
+                $state.transitionTo(url, params);
+            };
+        }])
         .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRoutersProvider) {
-            $urlRoutersProvider.otherwise('/transfer');
-            $stateProvider.state('transfer', {
+            $urlRoutersProvider.otherwise('/balance');
+            $stateProvider
+                .state('balance', {
+                    url: '/balance',
+                    templateUrl: '/src/layouts/balance.view.html',
+                })
+                .state('transfer', {
                 url: '/transfer',
                 templateUrl: '/src/layouts/transfer.view.html',
             })
@@ -71,7 +84,7 @@
         })
         .factory('dataFactory', dataFactory)
         .controller('transferCrtl', transferCrtl)
-        .controller('balanceCrtl', transferCrtl)
+        .controller('balanceCrtl', balanceCrtl)
         .controller('transferResultCrtl', transferResultCrtl);
 
 </script>

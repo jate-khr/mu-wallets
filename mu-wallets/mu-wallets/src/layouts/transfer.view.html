@@ -29,7 +29,7 @@
             </div>
  
             <div class="col-sm text-right">
-                xxx-xxx-xxxx
+                <input type="text" value="" class="form-control" ng-model="ctrl.receiveAccount" />
             </div>
         </div>
 
@@ -39,7 +39,7 @@
             </div>
 
             <div class="col-sm text-right">
-                2000.00 บาท
+                <input type="text" ng-model="ctrl.amount" class="form-control" />
             </div>
         </div>
 
@@ -47,7 +47,7 @@
    
             <div class="col-sm  text-center col-md-12" >
                 <input type="button" class="button"  value="ยกเลิก"/>&nbsp;
-                <input type="button" class="button" value="ตกลง" />
+                <input type="button" class="button" value="ตกลง" ng-click="ctrl.Transfer('123-456-789', ctrl.amount)" />
         
         </div>
             </div>

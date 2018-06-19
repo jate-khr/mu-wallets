@@ -161,6 +161,7 @@
     <Compile Include="Models\walletDbContext.cs" />
     <Compile Include="Models\transactionLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Transfer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\mu-wallet-db.mdf" />

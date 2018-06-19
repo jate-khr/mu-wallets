@@ -3,6 +3,7 @@
         accountReceive = $stateParams.accountReceive,
         amount = $stateParams.amount,
         ctrl = this;
+    this.accountReceive = accountReceive;
     $q.all([
         dataFactory.Account.GetBal(accountNo),
         dataFactory.Account.GetBal(accountReceive)
@@ -12,3 +13,4 @@
         });
 
 }
+transferResultCrtl.$inject = ['$stateParams', 'dataFactory','$q'];

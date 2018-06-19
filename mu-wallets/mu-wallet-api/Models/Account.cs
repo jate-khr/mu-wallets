@@ -8,6 +8,10 @@ namespace mu_wallet_api.Models
 {
     public class Account
     {
+        public Account()
+        {
+            this.transactions = new HashSet<transactionLog>();
+        }
         [Key]
         public string accountNo { get; set; }
         public int amount { get; set; }
