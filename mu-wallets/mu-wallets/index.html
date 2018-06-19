@@ -55,5 +55,11 @@
                 url: '/balance',
                 templateUrl: '/src/layouts/balance.view.html',
             });
-        }]);
+        }])
+        .directive('fitBottomEdge', function () {
+            return {
+                restrict: 'A',
+                controller: function () { }
+            }
+        });
 </script>
