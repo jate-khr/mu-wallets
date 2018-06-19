@@ -1,4 +1,4 @@
-﻿var transferCrtl = function ($scope, $stateParams, $log, dataFactory) {
+﻿var balanceCrtl = function ($scope, $stateParams, $log, dataFactory) {
     var ctrl = this;
     ctrl.user.accountNo = "123-456-789";
     ctrl.account = {
@@ -13,4 +13,4 @@
     });
 
 }
-transferCrtl.$inject = ['$scope', '$stateParams', '$log', 'dataFactory'];
+balanceCrtl.$inject = ['$scope', '$stateParams', '$log', 'dataFactory'];

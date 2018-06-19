@@ -5,6 +5,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.8/angular.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.18/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="src/controller/balance.controller.js"></script>
+    <script type="text/javascript" src="src/controller/transfer.controller.js"></script>
     <style>
         body {
             padding: 0;
@@ -46,14 +48,19 @@
 </body>
 </html>
 <script>
+
     angular.module('muWallet', [
         'ui.router'
     ])
         .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRoutersProvider) {
-            $urlRoutersProvider.otherwise('/balance');
-            $stateProvider.state('balance', {
-                url: '/balance',
-                templateUrl: '/src/layouts/balance.view.html',
+            $urlRoutersProvider.otherwise('/transfer');
+            $stateProvider.state('transfer', {
+                url: '/transfer',
+                templateUrl: '/src/layouts/transfer.view.html',
+            })
+            .state('transferResult', {
+                url: '/transferResult/:accountNo:accountReceive:amount',
+                templateUrl: '/src/layouts/transfer_result.view.html',
             });
         }])
         .directive('fitBottomEdge', function () {
@@ -61,5 +68,8 @@
                 restrict: 'A',
                 controller: function () { }
             }
-        });
+        })
+        .factory('dataFactory', dataFactory)
+        .controller('transferCrtl', transferCrtl)
+        .controller('balanceCrtl', transferCrtl);
 </script>
