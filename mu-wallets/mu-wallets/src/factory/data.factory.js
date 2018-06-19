@@ -2,12 +2,12 @@
     var defer = $q.defer();
     return {
         Account: {
-            GetBal: function (id) {
+            GetBal: function (accountNo) {
                 $http({
                     method: 'GET',
                     url: '',
 
-                    data: { accountNo: id }
+                    data: { accountNo: accountNo }
                 }).then(function (data) {
                     defer.resolve(data);
                 });
@@ -21,6 +21,16 @@
             },
             Find: function (id) {
                 resolve($filtter('filter')(fakeDataHub.account, {id,id},true)[0])
+            },
+            Transfer: function (accountNo,amount) {
+                $http({
+                    method: 'POST',
+                    url: '',
+                    data: { accountNo: accountNo, amount: amount}
+                }).then(function (data) {
+                    defer.resolve(data);
+                });
+                return defer.promise;
             }
         }
        
